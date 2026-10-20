@@ -113,6 +113,12 @@ retries).
 
 ## Running it
 
+**Quickest: no Postgres or Docker needed.** Needs Java 21. Starts the app against a throwaway embedded PostgreSQL:
+
+```bash
+./mvnw spring-boot:test-run -Dspring-boot.run.main-class=com.tanmay.jobqueue.LocalJobQueueApplication
+```
+
 **With Docker** (Postgres + one API instance + two extra workers):
 
 ```bash

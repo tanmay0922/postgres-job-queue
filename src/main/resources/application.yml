@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: postgres-job-queue
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/jobs}
+    username: ${DATABASE_USERNAME:jobs}
+    password: ${DATABASE_PASSWORD:jobs}
+  mvc:
+    problemdetails:
+      enabled: true
+  lifecycle:
+    timeout-per-shutdown-phase: 45s
+
+server:
+  shutdown: graceful
+
+jobqueue:
+  worker-enabled: true
+  concurrency: 4
+  poll-interval: 500ms
+  visibility-timeout: 5m
+  backoff-base: 2s
+  backoff-max: 10m
+  reaper-interval: 30s
+  shutdown-timeout: 30s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
